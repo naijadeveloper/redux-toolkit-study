@@ -1,5 +1,5 @@
-import Login from "./components/Login";
-import Profile from "./components/Profile";
+import ShowRandom from "./components/ShowRandom";
+import ListPrevRandoms from "./components/ListPrevRandoms";
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
       }}
       className="App"
     >
-      <Login />
-      <Profile />
+      <ShowRandom />
+      <ListPrevRandoms />
     </div>
   );
 }
