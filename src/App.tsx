@@ -3,16 +3,7 @@ import ListPrevRandoms from "./components/ListPrevRandoms";
 
 function App() {
   return (
-    <div
-      style={{
-        backgroundColor: "#333",
-        color: "#ccc",
-        width: "100vw",
-        height: "100vh",
-        padding: "20px",
-      }}
-      className="App"
-    >
+    <div className="App flex h-screen w-screen items-center justify-center bg-gray-800 text-white">
       <ShowRandom />
       <ListPrevRandoms />
     </div>
