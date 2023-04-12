@@ -11,15 +11,16 @@ function App() {
   return (
     <div className="App relative flex h-screen w-screen flex-col items-center justify-center bg-gray-800 text-white">
       <p className="absolute top-1 mt-2 w-full px-3 text-center text-xl md:text-3xl">
-        While I practice my redux toolkit skills, You can read famous quotes
+        While I practice my redux toolkit skills, You can inspire youself with
+        some famous quotes
       </p>
       {quotes.length > 0 && (
         <button
           onClick={() => setList(!list)}
           className="relative top-3 rounded-md border border-green-400 bg-gray-700 p-[10px] transition-all duration-150 hover:border-transparent"
         >
-          {list ? "Famous Quotes" : "Saved Quotes"}
-        </button> 
+          {list ? "Inspire Moi" : "Saved Inspirations"}
+        </button>
       )}
       {list ? <ListPrevRandoms /> : <ShowRandom />}
     </div>

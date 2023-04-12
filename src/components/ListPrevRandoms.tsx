@@ -1,16 +1,19 @@
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { AiOutlineArrowDown } from "react-icons/ai";
 
+import { useSelector } from "react-redux";
+import type { rootState } from "../store";
+import { useState } from "react";
+
 const ListPrevRandoms: React.FC = () => {
+  const { quotes } = useSelector((state: rootState) => state.quote);
+  const [index, setIndex] = useState<number>(1);
   return (
     <div className="flex w-[90%] flex-col items-center justify-center rounded-md bg-gray-900 p-[20px] drop-shadow-[0px_0px_50px_seagreen] md:w-[70%] lg:w-[50%]">
       <section>
         {/* section for new quotes */}
         <q className="border border-gray-600 text-[18px]">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus
-          magnam consectetur nesciunt vitae! Quisquam quas beatae nostrum
-          doloribus porro quaerat atque eveniet mollitia corrupti earum autem
-          asperiores, ipsam sed! Minima consectetur veritatis perferendis
+          {`${quotes[index]}`}
         </q>
         <p className="text-right text-lg text-gray-300">- Dr seuss</p>
       </section>
