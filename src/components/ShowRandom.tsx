@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { rootState, appDispatch } from "../store";
 import fetchQuote from "../store/thunk/fetchQuote";
@@ -38,7 +37,7 @@ const ShowRandom = () => {
           </>
         ) : (
           <>
-            <q className="border border-gray-600 text-[17px]">
+            <q className="border border-gray-600 text-[18px]">
               {`${quotes[0].content}`}
             </q>
             <p className="text-right text-lg text-gray-300">
