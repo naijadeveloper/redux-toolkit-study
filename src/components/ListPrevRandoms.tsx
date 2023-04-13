@@ -1,28 +1,42 @@
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { AiOutlineArrowDown } from "react-icons/ai";
 
-import { useSelector } from "react-redux";
-import type { rootState } from "../store";
+import { useSelector, useDispatch } from "react-redux";
+import type { rootState, appDispatch } from "../store";
 import { useEffect, useState } from "react";
+import { deleteFromList } from "../store/reducers/quote";
 
 const ListPrevRandoms: React.FC = () => {
   const { quotes } = useSelector((state: rootState) => state.quote);
+  //
   const [index, setIndex] = useState<number>(() => {
     let quoteIndex = localStorage.getItem("quoteIndex");
     if (!quoteIndex) return 0;
-    return JSON.parse(quoteIndex);
-  });
 
+    let res = JSON.parse(quoteIndex);
+    if (quotes[res]) return res;
+
+    return 0;
+  });
   useEffect(() => {
     localStorage.setItem("quoteIndex", JSON.stringify(index));
   }, [index]);
+  //
+  const dispatch = useDispatch();
 
   function handleDownBtn() {
-    setIndex((index) => (index == 4 ? 0 : index + 1));
+    setIndex((index) => (index == quotes.length - 1 ? 0 : index + 1));
   }
 
   function handleUpBtn() {
-    setIndex((index) => (index == 0 ? 4 : index - 1));
+    setIndex((index) => (index == 0 ? quotes.length - 1 : index - 1));
+  }
+
+  function handleDelete() {
+    dispatch(deleteFromList(quotes[index].id));
+    if (index != 0) {
+      setIndex(index - 1);
+    }
   }
 
   return (
@@ -32,9 +46,15 @@ const ListPrevRandoms: React.FC = () => {
         <q className="border border-gray-600 text-[18px]">
           {`${quotes[index].content}`}
         </q>
-        <p className="text-right text-lg text-gray-300">
-          - {`${quotes[index].author}`}
-        </p>
+        <div className="flex items-center justify-between px-1">
+          <p
+            onClick={handleDelete}
+            className="cursor-pointer text-lg font-extrabold text-red-600"
+          >
+            X
+          </p>
+          <p className="text-lg text-gray-300">- {`${quotes[index].author}`}</p>
+        </div>
       </section>
       <div className="mt-[5px] flex w-full items-center justify-center space-x-2">
         <button onClick={handleDownBtn} className="relative">

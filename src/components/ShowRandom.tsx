@@ -25,12 +25,13 @@ const ShowRandom = () => {
             >
               {isLoading && "😊"}
               {error && "😐"}
-              {quotes.length <= 0 && "🤔"}
+              {quotes.length <= 0 && !isLoading && "🤔"}
             </span>
             <p className="text-center">
               {isLoading && "It's coming"}
               {error && "You got an error instead. Sorry!!"}
               {quotes.length <= 0 &&
+                !isLoading &&
                 `No famous quote yet? Come on now, Some are actually quite
               inspiring`}
             </p>

@@ -27,7 +27,9 @@ const quoteSlice = createSlice({
   },
   reducers: {
     deleteFromList(state, action: PayloadAction<string>) {
-      state.quotes = state.quotes.filter((quote) => quote.id !== action.payload)
+      state.quotes = state.quotes.filter((quote) => quote.id !== action.payload);
+
+      localStorage.setItem("quotes", JSON.stringify(state.quotes));
     }
   },
   extraReducers: (builder) => {
@@ -44,11 +46,12 @@ const quoteSlice = createSlice({
     builder.addCase(fetchQuote.fulfilled, (state, action:PayloadAction<quote>) => {
       state.isLoading = false;
       state.error = false;
-      
+
       if(state.quotes.length == 5) {
         state.quotes.pop();
       }
       state.quotes.unshift(action.payload);
+
       localStorage.setItem("quotes", JSON.stringify(state.quotes));
     });
   }

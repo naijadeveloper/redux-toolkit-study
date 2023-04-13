@@ -14,15 +14,19 @@ function App() {
         While I practice my redux toolkit skills, You can inspire youself with
         some famous quotes
       </p>
-      {quotes.length > 0 && (
-        <button
-          onClick={() => setList(!list)}
-          className="relative top-3 rounded-md border border-green-400 bg-gray-700 p-[10px] transition-all duration-150 hover:border-transparent"
-        >
-          {list ? "Inspire Moi" : "Saved Inspirations"}
-        </button>
+      {quotes.length > 0 ? (
+        <>
+          <button
+            onClick={() => setList(!list)}
+            className="relative top-3 rounded-md border border-green-400 bg-gray-700 p-[10px] transition-all duration-150 hover:border-transparent"
+          >
+            {list ? "Inspire Moi" : "Saved Inspirations"}
+          </button>
+          {list ? <ListPrevRandoms /> : <ShowRandom />}
+        </>
+      ) : (
+        <ShowRandom />
       )}
-      {list ? <ListPrevRandoms /> : <ShowRandom />}
     </div>
   );
 }
